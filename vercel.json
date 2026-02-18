@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/game/game_system/screens/index.html",
+      "permanent": false
+    }
+  ]
+}
