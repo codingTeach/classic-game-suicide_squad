@@ -1,22 +1,47 @@
-﻿# Game (MVP A-Frame)
+# Game (MVP A-Frame)
 
-Este directorio `game/` es la **fuente de verdad** del proyecto. Las carpetas en la raíz (`engine_basics/`, `game_data/`, `game_engine/`, `game_system/`) se consideran **referencia histórica/prototipos**.
+`game/` es la fuente de verdad del proyecto. Todo lo jugable y mantenible vive aqui.
+
+## Objetivo
+- MVP 3D en navegador con A-Frame.
+- Datos versionados en JSON dentro de `game_data/`.
+- Motor y UI desacoplados, sin bundler.
 
 ## Estructura
-- `game_data/`: datos y assets del juego (JSON + GLB)
-- `game_engine/`: motor (generación de mundo, sistemas, render)
-- `game_system/`: pantallas, UI y bootstrap del juego
-- `tools/`: utilidades de desarrollo
-- `docs/`: documentación
+- `game_data/` datos, assets, modos, dificultades y mundos.
+- `game_engine/` motor (core, generacion, sistemas, render, mundo).
+- `game_system/` pantallas, UI, router y `app.js`.
+- `tools/` utilidades (server local, validacion assets).
+- `docs/` documentacion del proyecto.
 
-## Convenciones (ES modules)
-- Todos los scripts de aplicación se cargan con `type="module"`.
-- Las rutas se resuelven relativo al root `game/` usando `import.meta.url` en los módulos de engine.
-- Los datos se cargan vía `fetch` desde `game_data/`.
+## Inicio rapido
+1. Levanta el server local.
+2. Abre el menu principal.
+3. Inicia una partida nueva o carga la ultima.
 
-## Inicio rápido
-1. Levanta un servidor HTTP estático en la raíz del repo.
-2. Abre `game/game_system/screens/index.html`.
-3. Inicia partida (MVP) para cargar `game.html`.
+```powershell
+node game/tools/dev_server.js
+```
 
-> Nota: A-Frame se carga desde CDN, no se usa bundler.
+```text
+http://127.0.0.1:5501/game/game_system/screens/index.html
+```
+
+## Controles (MVP)
+- `WASD` mover.
+- Mouse: mirar.
+- Click izquierdo: disparar.
+- Click derecho: dash/teleport corto.
+- `Shift` sprint.
+- `E` recoger item cercano.
+- Rueda del mouse: cambiar slot del inventario.
+- `1-9` seleccionar slots.
+- `Esc` pausar / volver.
+
+## Guardado
+- Autosave y guardado manual en `localStorage`.
+- Se persiste: mapa, altura, items, enemigos, vida, intentos, puntaje.
+
+## Notas
+- A-Frame se carga por CDN (sin bundler).
+- `engine_basics/` solo referencia historica.
